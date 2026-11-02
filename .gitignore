@@ -31,9 +31,9 @@ go.work.sum
 .env
 
 # Editor/IDE
-# .idea/
-# .vscode/
+.idea/
+.vscode/
 
 # Virtual Environment 
-venv
-.venv
+venv/
+.venv/
