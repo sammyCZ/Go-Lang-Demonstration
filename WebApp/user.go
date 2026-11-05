@@ -21,17 +21,21 @@ import (
 	"github.com/gorilla/mux"
 	"gorm.io/gorm"
 	"gorm.io/driver/sqlite"
+	"runtime"
 )
 
 var DB *gorm.DB
 
 type User struct {
+	// Add a pre-defined struct (CreatedAt, UpdatedAt, DeletedAt)
 	gorm.Model
+	// Send data with json 
 	FirstName string `json:"firstname"`
 	LastName string `json:"lastname"`
 	Email string `json:"email"`
 }
 
+// Initialize and connect to sqlite database 
 func InitialMigration() {
 	var err error
 	DB, err = gorm.Open(sqlite.Open("test.db"), &gorm.Config{})
@@ -42,9 +46,17 @@ func InitialMigration() {
 	DB.AutoMigrate(&User{})
 }
 
+// -------------------------- Define Handler Methods
+
 func GetUsers(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
+	
+	// Garbage collection! Go allocates memory for this.
+	// Once the handler returns and the HTTP is written,
+	// nothing references that memory anymore
 	var users []User
+	runtime.GC() 
+	
 	DB.Find(&users)
 	json.NewEncoder(w).Encode(users)
 }

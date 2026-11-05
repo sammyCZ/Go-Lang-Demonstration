@@ -3,6 +3,8 @@
 
 // go get gorm.io/gorm gorm.io/driver/sqlite github.com/gorilla/mux
 
+// For showing garbage collection: GODEBUG=gctrace=1 go run .
+
 package main
 
 import (
@@ -11,19 +13,23 @@ import (
 	"github.com/gorilla/mux"
 )
 
+// Use gorilla/mux package to initialize router 
 func initializeRouter(){
 	r := mux.NewRouter()
 
+	// Define APIs: routing, handle function, method protocol
 	r.HandleFunc("/users", GetUsers).Methods("GET")
 	r.HandleFunc("/users/{id}", GetUser).Methods("GET")
 	r.HandleFunc("/users", CreateUser).Methods("POST")
 	r.HandleFunc("/users/{id}", UpdateUser).Methods("PUT")
 	r.HandleFunc("/users/{id}", DeleteUser).Methods("DELETE")
 
+	// Use log package to start the server 
 	log.Println("starting server on :8080")
 	log.Fatal(http.ListenAndServe(":8080", r))
 }
 
+// Start the app
 func main() {
 	InitialMigration()
 	// log.Println("migration done")
