@@ -1,19 +1,40 @@
+// GET all users
+// curl http://localhost:8080/users
+
+// GET a single user (replace 1 with the actual ID)
+// curl http://localhost:8080/users/#
+
+// PUT (update) a user
+// curl -X PUT http://localhost:8080/users/# \
+//   -H "Content-Type: application/json" \
+//   -d '{"firstname":"Jane","lastname":"Doe","email":"janet@example.com"}'
+
+// DELETE a user
+// curl -X DELETE http://localhost:8080/users/#
+
 package main
 
-import {
+import (
+	"fmt"
 	"net/http"
+	"encoding/json"
+	"github.com/gorilla/mux"
 	"gorm.io/gorm"
-}
+	"gorm.io/driver/sqlite"
+)
+
+var DB *gorm.DB
 
 type User struct {
 	gorm.Model
-	FirstName string `json."firstname"`
-	LastName string `json."lastname"`
-	Email string `json."email"`
+	FirstName string `json:"firstname"`
+	LastName string `json:"lastname"`
+	Email string `json:"email"`
 }
 
 func InitialMigration() {
-	DB,err = gorm.Open(mysql.Open(DNS), &gorm.Config{})
+	var err error
+	DB, err = gorm.Open(sqlite.Open("test.db"), &gorm.Config{})
 	if err != nil {
 		fmt.Println(err.Error())
 		panic("Cannot connect to Database")
