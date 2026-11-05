@@ -1,66 +1,121 @@
-# Go-Lang-Demonstration
 
-All Instructions come from: https://go.dev/doc/install 
+# Go Programming Language Demonstration
 
-# Linux
- Remove any previous Go installation by deleting the /usr/local/go folder (if it exists), then extract the archive you just downloaded into /usr/local, creating a fresh Go tree in /usr/local/go:
+This project demonstrates the Go programming language using examples of basic syntax, concurrency, and sequential execution.
 
-$ rm -rf /usr/local/go && tar -C /usr/local -xzf go1.27.3.linux-amd64.tar.gz
-      
-(You may need to run each command separately with the necessary permissions, as root or through sudo.)
+## Requirements
 
-Do not untar the archive into an existing /usr/local/go tree. This is known to produce broken Go installations.
-Add /usr/local/go/bin to the PATH environment variable.
+- Go programming language
+- Visual Studio Code (recommended)
+- Go extension for VS Code (recommended)
 
-You can do this by adding the following line to your $HOME/.profile or /etc/profile (for a system-wide installation):
+## How to Install Go
 
-export PATH=$PATH:/usr/local/go/bin
-          
-Note: Changes made to a profile file may not apply until the next time you log into your computer. To apply the changes immediately, just run the shell commands directly or execute them from the profile using a command such as source $HOME/.profile.
-Add $HOME/go/bin (the default Go bin path) to your PATH environment variable to use tools installed via go install.
+1. Visit https://go.dev/dl/
+2. Download Go for your operating system (Windows, macOS, or Linux).
+3. Open the installer or installation package and follow the instructions for your operating system.
+4. After installing, open a new terminal.
+5. Type the following command:
 
-You can do this by adding the following line to your $HOME/.profile or $HOME/.bashrc file:
+    go version
 
-export PATH="$PATH:$(go env GOPATH)/bin"
-          
-Restart any open terminal sessions for the changes to take effect.
+If the terminal displays a Go version number, Go was installed correctly.
 
-Verify that you've installed Go by opening a command prompt and typing the following command:
+## How to Run the Programs
 
-$ go version
-          
-Confirm that the command prints the installed version of Go.
+1. Open the Go-Lang-Demonstration folder in VS Code.
+2. Open the terminal.
+3. Make sure the terminal is in the main project folder.
+4. Run the following programs one at a time.
 
-# Mac 
+### 1. Hello World
 
-Open the package file you downloaded and follow the prompts to install Go.
+Command:
 
-The package installs the Go distribution to /usr/local/go. The package adds the /usr/local/go/bin directory to your PATH environment variable by creating a /etc/paths.d/go file.
-Add $HOME/go/bin (the default Go bin path) to your PATH environment variable to use tools installed via go install.
+    go run "Simple Syntax/hello.go"
 
-You can do this by adding the following line to your ~/.zshrc or ~/.bash_profile file:
+This program prints "Hello, World!" to the terminal.
 
-export PATH="$PATH:$(go env GOPATH)/bin"
-          
-Restart any open terminal sessions for the changes to take effect.
+Expected output:
 
-Verify that you've installed Go by opening a new terminal session and typing the following command:
+    Hello, World!
 
-$ go version
-          
-Confirm that the command prints the installed version of Go.
+### 2. Simple Go Syntax
 
-# Windows
- Open the MSI file you downloaded and follow the prompts to install Go.
+Command:
 
-By default, the installer will install Go to Program Files or Program Files (x86). You can change the location as needed. After installing, you will need to close and reopen any open command prompts so that changes to the environment made by the installer are reflected at the command prompt.
-Verify that you've installed Go.
+    go run "Simple Syntax/simple.go"
 
-    In Windows, click the Start menu.
-    In the menu's search box, type cmd, then press the Enter key.
-    In the Command Prompt window that appears, type the following command:
+This program demonstrates basic Go syntax using student names and grades.
 
-     $ go version
-                  
-Confirm that the command prints the installed version of Go.
+It includes:
+- Structs
+- Functions
+- Loops
+- If-else statements
+- Slices
 
+The program displays each student's name, numerical grade, and letter grade.
+
+### 3. Concurrent Execution
+
+Command:
+
+    go run concurrency.go
+
+This program runs three tasks concurrently using goroutines and a channel.
+
+Each task waits for 4 seconds. Since the tasks run concurrently, they finish in approximately 4 seconds total.
+
+Tested execution time: 4.0006136 seconds.
+
+### 4. Sequential Execution
+
+Command:
+
+    go run concurrency1.go
+
+This program runs three tasks one at a time.
+
+Each task waits for 4 seconds. Since the tasks run sequentially, they finish in approximately 12 seconds total.
+
+Tested execution time: 12.0017518 seconds.
+
+## Concurrency vs. Sequential Execution
+
+| Concurrent Execution | Sequential Execution |
+|---|---|
+| Tasks run concurrently | Tasks run one at a time |
+| Uses goroutines | Uses regular function calls |
+| Approximately 4 seconds | Approximately 12 seconds |
+
+The concurrency example shows how overlapping tasks can reduce the total execution time.
+
+## Project Structure
+
+    Go-Lang-Demonstration/
+    |
+    |-- Simple Syntax/
+    |   |-- go.mod
+    |   |-- hello.go
+    |   |-- simple.go
+    |
+    |-- concurrency.go
+    |-- concurrency1.go
+    |-- README.md
+    |-- .gitignore
+
+## Project Files
+
+- `hello.go` - Prints Hello World.
+- `simple.go` - Demonstrates basic Go syntax.
+- `concurrency.go` - Demonstrates concurrent execution.
+- `concurrency1.go` - Demonstrates sequential execution.
+- `go.mod` - Contains Go module information.
+- `README.md` - Contains project instructions.
+
+## References
+
+- Official Go Website: https://go.dev/
+- Go Installation Guide: https://go.dev/doc/install
+- Go Documentation: https://go.dev/doc/
