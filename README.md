@@ -111,7 +111,8 @@ The concurrency example shows how overlapping tasks can reduce the total executi
 - `simple.go` - Demonstrates basic Go syntax.
 - `concurrency.go` - Demonstrates concurrent execution.
 - `concurrency1.go` - Demonstrates sequential execution.
-- `go.mod` - Contains Go module information.
+- `main.mod` - Web Application.
+- `main.mod` - Defines Methods for Web Application.
 - `README.md` - Contains project instructions.
 
 ## References
