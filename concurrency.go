@@ -1,4 +1,3 @@
-
 package main
 
 import (
@@ -7,26 +6,26 @@ import (
 )
 
 // Function representing a task
-func worker(id int, results chan string) {
-    fmt.Println("Worker", id, "started")
+func task(id int, results chan string) {
+    fmt.Println("Task", id, "started")
 
     time.Sleep(4 * time.Second)
 
-    results <- fmt.Sprintf("Worker %d finished", id)
+    results <- fmt.Sprintf("Task %d finished", id)
 }
 
 func main() {
-    // Create a channel
+    // Create a channel for go routines
     results := make(chan string)
 
     // Start measuring execution time
     start := time.Now()
 
     // Start three goroutines
-    go worker(1, results)
-    go worker(2, results)
-    go worker(3, results)
-
+    go task(1, results)
+    go task(2, results)
+    go task(3, results)
+    
     // Wait for all workers to finish
     for i := 0; i < 3; i++ {
         message := <-results

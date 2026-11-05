@@ -1,3 +1,4 @@
+
 package main
 
 import (
@@ -6,36 +7,26 @@ import (
 )
 
 // Function representing a task
-func worker(id int, results chan string) {
-    fmt.Println("Worker", id, "started")
+func task(id int) {
+    fmt.Println("Task", id, "started")
 
     time.Sleep(4 * time.Second)
 
-    fmt.Println("Worker", id, "finished")
-
-    results <- fmt.Sprintf("Worker %d finished", id)
+    fmt.Println("Task", id, "finished")
 }
 
 func main() {
-    // Create a buffered channel
-    results := make(chan string, 3)
-
     // Start measuring execution time
     start := time.Now()
 
-    // Execute workers sequentially
-    worker(1, results)
-    worker(2, results)
-    worker(3, results)
-
-    // Receive all results
-    for i := 0; i < 3; i++ {
-        <-results
-    }
+    // Execute tasks sequentially
+    task(1)
+    task(2)
+    task(3)
 
     // Calculate execution time
     elapsed := time.Since(start)
 
-    fmt.Println("All workers completed!")
+    fmt.Println("All tasks completed!")
     fmt.Println("Total execution time:", elapsed)
 }
