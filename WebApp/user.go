@@ -1,7 +1,7 @@
 // GET all users
 // curl http://localhost:8080/users
 
-// GET a single user (replace 1 with the actual ID)
+// GET a single user 
 // curl http://localhost:8080/users/#
 
 // PUT (update) a user
