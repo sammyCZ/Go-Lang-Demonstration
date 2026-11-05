@@ -119,5 +119,6 @@ The concurrency example shows how overlapping tasks can reduce the total executi
 - Official Go Website: https://go.dev/
 - Go Installation Guide: https://go.dev/doc/install
 - Go Documentation: https://go.dev/doc/
+- GORM Library: https://pkg.go.dev/gorm.io/gorm 
 - Go Modules: https://go.dev/blog/using-go-modules 
 - Creating GoLang Rest API: https://www.youtube.com/watch?v=KPftgI40WHI 
